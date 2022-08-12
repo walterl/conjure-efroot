@@ -11,9 +11,13 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("conjure-efroot.aniseed.autoload")).autoload
-local eval, extract = autoload("conjure.eval"), autoload("conjure-efroot.extract")
-do end (_2amodule_locals_2a)["eval"] = eval
+local buffer, client, config, eval, extract, nvim = autoload("conjure.buffer"), autoload("conjure.client"), autoload("conjure.config"), autoload("conjure.eval"), autoload("conjure-efroot.extract"), autoload("conjure.aniseed.nvim")
+do end (_2amodule_locals_2a)["buffer"] = buffer
+_2amodule_locals_2a["client"] = client
+_2amodule_locals_2a["config"] = config
+_2amodule_locals_2a["eval"] = eval
 _2amodule_locals_2a["extract"] = extract
+_2amodule_locals_2a["nvim"] = nvim
 local function effective_root_form()
   local form = extract["effective-root-form"]()
   if form then
@@ -36,7 +40,7 @@ local function insert_result_comment(tag, input)
     local function _4_(result)
       return buffer["append-prefixed-line"](buf, range["end"], comment_prefix, result)
     end
-    __fnl_global__eval_2dstr({code = content, range = range, origin = ("comment-" .. tag), ["suppress-hud?"] = true, ["on-result"] = _4_})
+    eval["eval-str"]({code = content, range = range, origin = ("comment-" .. tag), ["suppress-hud?"] = true, ["on-result"] = _4_})
     return input
   else
     return nil

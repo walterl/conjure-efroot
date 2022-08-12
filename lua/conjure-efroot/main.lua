@@ -20,7 +20,7 @@ _2amodule_locals_2a["nvim"] = nvim
 _2amodule_locals_2a["str"] = str
 local function on_filetype()
   mapping.buf("n", "EvalEffectiveRootForm", "er", "conjure-efroot.eval", "effective-root-form")
-  return mapping.buf("n", "EvalCommentEffectiveRootForm", "ecr", "conjure-efroot", "comment-effective-root-form")
+  return mapping.buf("n", "EvalCommentEffectiveRootForm", "ecr", "conjure-efroot.eval", "comment-effective-root-form")
 end
 _2amodule_2a["on-filetype"] = on_filetype
 local function init()

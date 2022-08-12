@@ -1,6 +1,10 @@
 (module conjure-efroot.eval
-  {autoload {eval conjure.eval
-             extract conjure-efroot.extract}})
+  {autoload {buffer conjure.buffer
+             client conjure.client
+             config conjure.config
+             eval conjure.eval
+             extract conjure-efroot.extract
+             nvim conjure.aniseed.nvim}})
 
 (defn effective-root-form []
   (let [form (extract.effective-root-form)]
@@ -19,7 +23,7 @@
                          (client.get :comment-prefix))]
     (when input
       (let [{: content : range} input]
-        (eval-str
+        (eval.eval-str
           {:code content
            :range range
            :origin (.. :comment- tag)

@@ -8,7 +8,7 @@
 
 (defn on-filetype []
   (mapping.buf :n :EvalEffectiveRootForm "er" :conjure-efroot.eval :effective-root-form)
-  (mapping.buf :n :EvalCommentEffectiveRootForm "ecr" :conjure-efroot :comment-effective-root-form))
+  (mapping.buf :n :EvalCommentEffectiveRootForm "ecr" :conjure-efroot.eval :comment-effective-root-form))
 
 (defn init []
   ;; Remap original "eval root" commands
