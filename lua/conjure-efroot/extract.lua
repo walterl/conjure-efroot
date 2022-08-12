@@ -202,12 +202,9 @@ local function form_tree()
     depth = a.inc(depth)
     inserted_3f = false
     for _, dform in ipairs(depth_forms(depth)) do
-      print(("(form-tree) form at depth " .. tostring(depth) .. ": " .. a.get(dform, "content")))
       if forms_3d(root, dform) then
-        print("(form-tree) Found root!")
         found_root_3f = true
       elseif not has_form_3f(forms, dform) then
-        print(("(form-tree) New form: " .. a.get(dform, "content")))
         table.insert(forms, dform)
         inserted_3f = true
       else
@@ -220,7 +217,6 @@ _2amodule_locals_2a["form-tree"] = form_tree
 --[[ (form-tree) {:a (form-tree)} {:thekey (do [(do (form-tree))])} (do (tostring "OK") (form-tree)) ]]--
 local function effective_root_form()
   local tree = form_tree()
-  print(("Form tree:\n" .. vim.inspect(tree)))
   local f = a.last(tree)
   while (f and comment_form_3f(f)) do
     tree = a.butlast(tree)

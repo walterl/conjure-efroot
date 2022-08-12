@@ -165,16 +165,16 @@
     (set depth (a.inc depth))
     (set inserted? false)
     (each [_ dform (ipairs (depth-forms depth))]
-      (print (.. "(form-tree) form at depth " (tostring depth) ": " (a.get dform :content)))
+      ; (print (.. "(form-tree) form at depth " (tostring depth) ": " (a.get dform :content)))
       (if
         (forms= root dform)
         (do
-          (print "(form-tree) Found root!")
+          ; (print "(form-tree) Found root!")
           (set found-root? true))
 
         (not (has-form? forms dform))
         (do
-          (print (.. "(form-tree) New form: " (a.get dform :content)))
+          ; (print (.. "(form-tree) New form: " (a.get dform :content)))
           (table.insert forms dform)
           (set inserted? true)))))
   (sort-forms forms))
@@ -190,7 +190,7 @@
 
 (defn effective-root-form []
   (var tree (form-tree))
-  (print (.. "Form tree:\n" (vim.inspect tree)))
+  ; (print (.. "Form tree:\n" (vim.inspect tree)))
   (var f (a.last tree))
   (while (and f (comment-form? f))
     (set tree (a.butlast tree))
