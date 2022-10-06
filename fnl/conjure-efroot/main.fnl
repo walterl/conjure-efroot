@@ -4,11 +4,14 @@
              config conjure.config
              mapping conjure.mapping
              nvim conjure.aniseed.nvim
-             str conjure.aniseed.string}})
+             str conjure.aniseed.string
+             eval conjure-efroot.eval}})
 
 (defn on-filetype []
-  (mapping.buf :n :EvalEffectiveRootForm "er" :conjure-efroot.eval :effective-root-form)
-  (mapping.buf :n :EvalCommentEffectiveRootForm "ecr" :conjure-efroot.eval :comment-effective-root-form))
+  (mapping.buf :EvalEffectiveRootForm "er" #(eval.effective-root-form)
+               {:desc "Evaluate the effective root form"})
+  (mapping.buf :EvalCommentEffectiveRootForm "ecr" #(eval.comment-effective-root-form)
+               {:desc "Evaluate the effective root form into a comment"}))
 
 (defn init []
   ;; Remap original "eval root" commands
