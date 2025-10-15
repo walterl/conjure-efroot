@@ -214,7 +214,7 @@ local function form_tree()
   return sort_forms(forms)
 end
 _2amodule_locals_2a["form-tree"] = form_tree
---[[ (form-tree) {:a (form-tree)} {:thekey (do [(do (form-tree))])} (do (tostring "OK") (form-tree)) ]]--
+--[[ (form-tree) {:a (form-tree)} {:thekey (do [(do (form-tree))])} (do (tostring "OK") (form-tree)) ]]
 local function effective_root_form()
   local tree = form_tree()
   local f = a.last(tree)
@@ -225,5 +225,5 @@ local function effective_root_form()
   return f
 end
 _2amodule_2a["effective-root-form"] = effective_root_form
---[[ (effective-root-form) {:a (effective-root-form)} {:thekey (do [(do (effective-root-form))])} (do (comment [{:foo (do [(do (effective-root-form))])}])) (do (tostring "OK") (effective-root-form)) ]]--
+--[[ (effective-root-form) {:a (effective-root-form)} {:thekey (do [(do (effective-root-form))])} (do (comment [{:foo (do [(do (effective-root-form))])}])) (do (tostring "OK") (effective-root-form)) ]]
 return _2amodule_2a

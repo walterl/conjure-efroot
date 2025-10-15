@@ -11,9 +11,8 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("conjure-efroot.aniseed.autoload")).autoload
-local a, bridge, config, eval, mapping, nvim, str = autoload("conjure.aniseed.core"), autoload("conjure.bridge"), autoload("conjure.config"), autoload("conjure-efroot.eval"), autoload("conjure.mapping"), autoload("conjure.aniseed.nvim"), autoload("conjure.aniseed.string")
+local a, config, eval, mapping, nvim, str = autoload("conjure.aniseed.core"), autoload("conjure.config"), autoload("conjure-efroot.eval"), autoload("conjure.mapping"), autoload("conjure.aniseed.nvim"), autoload("conjure.aniseed.string")
 do end (_2amodule_locals_2a)["a"] = a
-_2amodule_locals_2a["bridge"] = bridge
 _2amodule_locals_2a["config"] = config
 _2amodule_locals_2a["eval"] = eval
 _2amodule_locals_2a["mapping"] = mapping
@@ -33,7 +32,7 @@ _2amodule_2a["on-filetype"] = on_filetype
 local function init()
   config["assoc-in"]({"mapping", "eval_root_form"}, "eR")
   config["assoc-in"]({"mapping", "eval_comment_root_form"}, "ecR")
-  return nvim.ex.autocmd("FileType", str.join(",", config.filetypes()), bridge["viml->lua"]("conjure-efroot.main", "on-filetype", {}))
+  return vim.api.nvim_create_autocmd("FileType", {pattern = str.join(",", config.filetypes()), callback = on_filetype})
 end
 _2amodule_2a["init"] = init
 return _2amodule_2a

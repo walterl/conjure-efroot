@@ -47,7 +47,7 @@ local function str(code, opts)
   ANISEED_STATIC_MODULES = (true == a.get(opts, "static?"))
   local fnl = fennel.impl()
   local function _4_()
-    return string.gsub(string.gsub(fnl.compileString(wrap_macros(code, opts), a["merge!"]({allowedGlobals = false, compilerEnv = _G}, opts)), (delete_marker_pat .. "\n"), "\n"), (delete_marker_pat .. "$"), "")
+    return string.gsub(string.gsub(fnl.compileString(wrap_macros(code, opts), a["merge!"]({compilerEnv = _G, allowedGlobals = false}, opts)), (delete_marker_pat .. "\n"), "\n"), (delete_marker_pat .. "$"), "")
   end
   return xpcall(_4_, fnl.traceback)
 end
@@ -70,7 +70,9 @@ _2amodule_2a["file"] = file
 local function glob(src_expr, src_dir, dest_dir, opts)
   for _, path in ipairs(fs.relglob(src_dir, src_expr)) do
     if fs["macro-file-path?"](path) then
-      a.spit((dest_dir .. path), a.slurp((src_dir .. path)))
+      local dest = (dest_dir .. path)
+      fs.mkdirp(fs.basename(dest))
+      a.spit(dest, a.slurp((src_dir .. path)))
     else
       file((src_dir .. path), string.gsub((dest_dir .. path), ".fnl$", ".lua"), opts)
     end
